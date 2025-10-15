@@ -6,22 +6,31 @@ using System.Threading.Tasks;
 
 namespace Ejercicio1.Models
 {
-    public abstract class Empleado
+    public abstract class Empleado:IComparable<Empleado>
     {
-        public string DNI { get; set; }
-        public string Nombre { get; set; }
+        public string DNI { get; protected set; }
+        public string Nombre { get; protected set; }
 
+        public Empleado() { }
         public Empleado(string dni, string nombre)
         {
             DNI = dni;
             Nombre = nombre;
         }
 
-        public abstract decimal CalcularSueldo();
+        public abstract decimal CalcularImporteAPagar();
+        public abstract string[] GenerarRecibo();
+
 
         public override string ToString()
         {
             return $"{Nombre} - DNI: {DNI}";
+        }
+
+        public int CompareTo(Empleado other)
+        {
+            if(other == null) return -1 ;
+            return this.DNI.CompareTo(other.DNI);
         }
     }
 }

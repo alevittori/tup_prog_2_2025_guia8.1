@@ -8,7 +8,7 @@ namespace Ejercicio1.Models
 {
     internal interface IExportable
     {
-        string ExportarLinea(); // Para exportar al archivo .txt
-        string GenerarRecibo(); // Para mostrar en pantalla o imprimir
+        string Exportar(); // Para exportar al archivo .txt
+        void Importar(string datos); // Para mostrar en pantalla o imprimir
     }
 }

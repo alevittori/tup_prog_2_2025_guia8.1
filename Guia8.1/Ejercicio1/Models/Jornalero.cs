@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ejercicio1.Models
 {
-    public class Jornalero : Empleado
+    public class Jornalero : Empleado,IExportable
     {
         public int HorasTrabajadas { get; set; }
         public decimal ImportePorHora { get; set; }
         public decimal Retenciones { get; set; }
+
+        public Jornalero() { }
 
         public Jornalero(string dni, string nombre, int horas, decimal importeHora, decimal retenciones)
             : base(dni, nombre)
@@ -20,9 +22,41 @@ namespace Ejercicio1.Models
             Retenciones = retenciones;
         }
 
-        public override decimal CalcularSueldo()
+        public override decimal CalcularImporteAPagar()
         {
             return (HorasTrabajadas * ImportePorHora) - Retenciones;
+        }
+        public override string[] GenerarRecibo()
+        {
+            return null;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public string Exportar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Importar(string datos)
+        {
+            //Tipo:Jornalero; DNI; Nombre; Horas Trabajadas; Importe Por Hora; Retenciones
+            string linea = datos.Trim();
+            string[] grupo = linea.Split(';');
+
+            if(grupo.Length == 6 )
+            {
+                base.DNI = grupo[1];
+                base.Nombre = grupo[2];
+                HorasTrabajadas = Convert.ToInt32(grupo[3]);
+                ImportePorHora = Convert.ToDecimal(grupo[4]);
+                Retenciones = Convert.ToDecimal(grupo [5]);
+
+            }
+
         }
     }
 }
