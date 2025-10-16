@@ -11,6 +11,15 @@ namespace Ejercicio1.Models
         public decimal Basico { get; private set; }
         public decimal AportesPrevisionales { get; private set; }
 
+        public decimal ACobrar 
+        {
+            get
+            {
+                return CalcularImporteAPagar();
+            }
+        }
+        public string TipoEmpleado { get { return "Asalariado"; } }
+
         public Asalariado():base() { }
 
         public Asalariado(string dni, string nombre, decimal basico, decimal aportes)
@@ -36,7 +45,14 @@ namespace Ejercicio1.Models
 
         public string Exportar()
         {
-            throw new NotImplementedException();
+            
+
+            //Tipo:Asalariado;DNI;Nombre;Básico,Aportes provisionales, e agrega el monto a cobrar al final de la línea.
+            //Asalariado; 45654355; Agustín; 900456,00; 6000,5
+
+            string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{Basico};{AportesPrevisionales};{ACobrar}";
+            return infoExportar;
+
         }
 
         public void Importar(string datos)

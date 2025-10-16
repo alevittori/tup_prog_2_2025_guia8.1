@@ -20,17 +20,19 @@ namespace Ejercicio1
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-        }
+       
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Importacion de Empleados";
+            ofd.Filter = "Fichero csv|*csv";
+
+
             FileStream fl = null;
             StreamReader sr = null;
+
+
             try
             {
                 string path = "";
@@ -39,14 +41,15 @@ namespace Ejercicio1
                 fl = new FileStream(path, FileMode.Open, FileAccess.Read);
                 sr = new StreamReader(fl);
                 //como el archivo tiene dos cabeceras la descartamos
-                sr.ReadLine();
-                sr.ReadLine();
+                sr.ReadLine();//cabecera 1
+                sr.ReadLine();//cabecera 2
 
-                while (sr.EndOfStream != true)
+                while (sr.EndOfStream == false)
                 {
                     string linea = sr.ReadLine();
 
                     string tipo = linea.Split(';')[0];
+
                     if (tipo.ToUpper() == "Asalariado".ToUpper())
                     {
                         Asalariado nuevoEmpleado = new Asalariado();
@@ -67,8 +70,8 @@ namespace Ejercicio1
             catch (Exception ex) { MessageBox.Show(ex.Message); }
             finally
             {
-                sr.Close();
-                fl.Close();
+                if(fl != null) fl.Close();
+                if (sr != null) sr.Close();
             }
         }
 
@@ -80,8 +83,41 @@ namespace Ejercicio1
             foreach (Empleado em in empleadosImportados)
             {
                 lbResultados.Items.Add(em);
+                
             }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            FileStream fs = null;
+            StreamWriter sw = null;
+
+            try
+            {
+                string path = null;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    path = sfd.FileName;
+                    fs = new FileStream(path, FileMode.OpenOrCreate , FileAccess.Write);
+                    sw = new StreamWriter(fs);
+
+                    foreach (Empleado em in empleadosImportados)
+                    {
+                        if (em is Asalariado) { sw.WriteLine(((Asalariado)em).Exportar()); }
+                        if (em is Jornalero) { sw.WriteLine(((Jornalero)em).Exportar()); }
+
+                    }
+
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Ups!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally
+            {
+                if (sw != null) sw.Close();
+                if (fs != null) fs.Close();
+            }
         }
     }
 }
