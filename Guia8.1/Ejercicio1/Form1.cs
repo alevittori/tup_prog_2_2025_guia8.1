@@ -102,13 +102,25 @@ namespace Ejercicio1
                     path = sfd.FileName;
                     fs = new FileStream(path, FileMode.OpenOrCreate , FileAccess.Write);
                     sw = new StreamWriter(fs);
-
-                    foreach (Empleado em in empleadosImportados)
+                    if (empleadosImportados != null)
                     {
-                        if (em is Asalariado) { sw.WriteLine(((Asalariado)em).Exportar()); }
-                        if (em is Jornalero) { sw.WriteLine(((Jornalero)em).Exportar()); }
+                        foreach (Empleado em in empleadosImportados)
+                        {
+                            try
+                            {
+                                if (em is Asalariado) { sw.WriteLine(((Asalariado)em).Exportar()); }
 
+                            }catch(Exception ex) { MessageBox.Show(ex.Message,"error en Asalariado"); }
+                            try
+                            {
+                                if (em is Jornalero) { sw.WriteLine(((Jornalero)em).Exportar()); }
+
+                            }catch(Exception ex) { MessageBox.Show(ex.Message, "Error en Jornalero"); }
+
+                        }
+                    
                     }
+
 
                 }
             }

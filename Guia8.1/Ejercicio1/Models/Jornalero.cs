@@ -12,6 +12,9 @@ namespace Ejercicio1.Models
         public decimal ImportePorHora { get; set; }
         public decimal Retenciones { get; set; }
 
+        public decimal ACobrar {  get { return CalcularImporteAPagar(); } }
+        public string TipoEmpleado { get { return "Jornalero"; } }
+
         public Jornalero() { }
 
         public Jornalero(string dni, string nombre, int horas, decimal importeHora, decimal retenciones)
@@ -38,7 +41,8 @@ namespace Ejercicio1.Models
 
         public string Exportar()
         {
-            throw new NotImplementedException();
+            string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{HorasTrabajadas};{ImportePorHora};{Retenciones};{ACobrar}";
+            return infoExportar;
         }
 
         public void Importar(string datos)
