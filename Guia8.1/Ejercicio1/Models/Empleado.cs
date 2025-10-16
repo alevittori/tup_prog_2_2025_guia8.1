@@ -14,8 +14,13 @@ namespace Ejercicio1.Models
         public Empleado() { }
         public Empleado(string dni, string nombre)
         {
-            DNI = dni;
-            Nombre = nombre;
+            //DNI = dni;
+            //Nombre = nombre;
+            
+            DNI = string.IsNullOrWhiteSpace(dni) ? throw new ArgumentException("DNI inválido") : dni;
+            Nombre = string.IsNullOrWhiteSpace(nombre) ? throw new ArgumentException("Nombre inválido") : nombre;
+        
+
         }
 
         public abstract decimal CalcularImporteAPagar();
@@ -31,6 +36,15 @@ namespace Ejercicio1.Models
         {
             if(other == null) return -1 ;
             return this.DNI.CompareTo(other.DNI);
+
+            //si tuviera otra comparacion en la que pueden ser iguales, podria implemetar una segunda comparacion con otra propiedad
+            //int dniComp = this.DNI.CompareTo(other.DNI);
+           // return dniComp != 0 ? dniComp : this.Nombre.CompareTo(other.Nombre);
         }
+
+       
+
+
     }
 }
+

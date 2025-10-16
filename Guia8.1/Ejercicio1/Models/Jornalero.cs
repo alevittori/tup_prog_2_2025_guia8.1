@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,13 +37,22 @@ namespace Ejercicio1.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"{TipoEmpleado} - {Nombre} ({DNI}) - A cobrar: {ACobrar:C}";
+
         }
 
         public string Exportar()
         {
-            string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{HorasTrabajadas};{ImportePorHora};{Retenciones};{ACobrar}";
-            return infoExportar;
+            //string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{HorasTrabajadas};{ImportePorHora};{Retenciones};{ACobrar}";
+            //return infoExportar;
+
+            return $"{TipoEmpleado};{DNI};{Nombre};{HorasTrabajadas};" +
+           $"{ImportePorHora.ToString("F2", CultureInfo.InvariantCulture)};" +
+           $"{Retenciones.ToString("F2", CultureInfo.InvariantCulture)};" +
+           $"{ACobrar.ToString("F2", CultureInfo.InvariantCulture)}";
+
+
+
         }
 
         public void Importar(string datos)

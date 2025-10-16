@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,17 +41,25 @@ namespace Ejercicio1.Models
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"{TipoEmpleado} - {Nombre} ({DNI}) - A cobrar: {ACobrar:C}";
         }
 
         public string Exportar()
         {
-            
+
 
             //Tipo:Asalariado;DNI;Nombre;Básico,Aportes provisionales, e agrega el monto a cobrar al final de la línea.
             //Asalariado; 45654355; Agustín; 900456,00; 6000,5
 
-            string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{Basico};{AportesPrevisionales};{ACobrar}";
+            //string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{Basico};{AportesPrevisionales};{ACobrar}";
+
+            //Esto evita que el archivo exportado tenga problemas si se abre en Excel u otro sistema que espera . como separador decimal.
+
+            string infoExportar = $"{TipoEmpleado};{DNI};{Nombre};{Basico.ToString("F2", CultureInfo.InvariantCulture)};" +
+                      $"{AportesPrevisionales.ToString("F2", CultureInfo.InvariantCulture)};" +
+                      $"{ACobrar.ToString("F2", CultureInfo.InvariantCulture)}";
+
+
             return infoExportar;
 
         }
