@@ -102,23 +102,31 @@ namespace Ejercicio1
                     path = sfd.FileName;
                     fs = new FileStream(path, FileMode.OpenOrCreate , FileAccess.Write);
                     sw = new StreamWriter(fs);
-                    if (empleadosImportados != null)
+                    /* if (empleadosImportados != null)
+                     {
+                         foreach (Empleado em in empleadosImportados)
+                         {
+                             try
+                             {
+                                 if (em is Asalariado) { sw.WriteLine(((Asalariado)em).Exportar()); }
+
+                             }catch(Exception ex) { MessageBox.Show(ex.Message,"Error en Asalariado"); }
+                             try
+                             {
+                                 if (em is Jornalero) { sw.WriteLine(((Jornalero)em).Exportar()); }
+
+                             }catch(Exception ex) { MessageBox.Show(ex.Message, "Error en Jornalero"); }
+
+                         }
+
+                     }*/
+
+                    foreach (Empleado em in empleadosImportados)
                     {
-                        foreach (Empleado em in empleadosImportados)
+                        if (em is IExportable exportable)
                         {
-                            try
-                            {
-                                if (em is Asalariado) { sw.WriteLine(((Asalariado)em).Exportar()); }
-
-                            }catch(Exception ex) { MessageBox.Show(ex.Message,"error en Asalariado"); }
-                            try
-                            {
-                                if (em is Jornalero) { sw.WriteLine(((Jornalero)em).Exportar()); }
-
-                            }catch(Exception ex) { MessageBox.Show(ex.Message, "Error en Jornalero"); }
-
+                            sw.WriteLine(exportable.Exportar());
                         }
-                    
                     }
 
 
@@ -129,6 +137,52 @@ namespace Ejercicio1
             {
                 if (sw != null) sw.Close();
                 if (fs != null) fs.Close();
+            }
+        }
+
+        private void lbResultados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Empleado emSelect = lbResultados.SelectedItem as Empleado;
+            FMostrar VMostrar = null;
+            try
+            {
+                if (emSelect != null)
+                {
+                    VMostrar = new FMostrar();
+                    foreach (string linea in emSelect.GenerarRecibo())
+                    {
+                        VMostrar.lbMostrar.Items.Add(linea);
+                    }
+                    VMostrar.ShowDialog();
+                }
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Ups!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            finally
+            {
+                if (VMostrar != null)
+                {
+                    VMostrar.Dispose();
+                }
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lbResultados.Items.Clear();
+            foreach (Empleado em in empleadosImportados)
+            {
+                if (em != null)
+                {
+                    foreach(string linea in em.GenerarRecibo())
+                    lbResultados.Items.Add(linea);
+                }
+                lbResultados.Items.Add("");
             }
         }
     }

@@ -32,7 +32,18 @@ namespace Ejercicio1.Models
         }
         public override string[] GenerarRecibo()
         {
-            return null;
+            string[] recibo = new string[5];
+
+            recibo[0] = $"📄 RECIBO DE PAGO - {TipoEmpleado}";
+            recibo[1] = $"Nombre: {Nombre}  - DNI: {DNI}";
+            // usar Environment.NewLine al imprimir. para dejar un espacio en blanco
+
+            recibo[2] = $"Importe en horas trabajadas:  ({HorasTrabajadas}/{ImportePorHora.ToString("F2", CultureInfo.InvariantCulture)})   {(HorasTrabajadas*ImportePorHora).ToString("F2",CultureInfo.InvariantCulture)} ";
+            recibo[3] = $"Retenciones Impositivas:     - {Retenciones.ToString("F", CultureInfo.InvariantCulture)}";
+            recibo[4] = $"Importe a Percibir:    {ACobrar.ToString("F2", CultureInfo.InvariantCulture)}";
+
+
+            return recibo;
         }
 
         public override string ToString()

@@ -36,7 +36,16 @@ namespace Ejercicio1.Models
         }
         public override string[] GenerarRecibo()
         {
-            return null;
+            string[] recibo = new string[5];
+
+            recibo[0] = $"📄 RECIBO DE PAGO - {TipoEmpleado}";
+            recibo[1] = $"Nombre: {Nombre}  - DNI: {DNI}";
+            recibo[2] = $"Básico:       {Basico.ToString("F2",CultureInfo.InvariantCulture)} ";
+            recibo[3] = $"Aportes:     - {AportesPrevisionales.ToString("F", CultureInfo.InvariantCulture)}";
+            recibo[4]= $"Importe a Percibir:    {ACobrar.ToString("F2",CultureInfo.InvariantCulture)}";
+
+
+            return recibo;
         }
 
         public override string ToString()
