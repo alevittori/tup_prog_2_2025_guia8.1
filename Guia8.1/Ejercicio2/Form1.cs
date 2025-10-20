@@ -6,5 +6,10 @@ namespace Ejercicio2
         {
             InitializeComponent();
         }
+
+        private void btnAltaEvento_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

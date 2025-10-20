@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnAltaEvento = new Button();
+            tbNombreEvento = new TextBox();
             dtpFecha = new DateTimePicker();
             label2 = new Label();
             label1 = new Label();
-            tbNombreEvento = new TextBox();
-            btnAltaEvento = new Button();
             groupBox2 = new GroupBox();
             lbDetalles = new ListBox();
             groupBox1.SuspendLayout();
@@ -53,6 +53,24 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Nuevo Evento";
+            // 
+            // btnAltaEvento
+            // 
+            btnAltaEvento.Location = new Point(494, 55);
+            btnAltaEvento.Name = "btnAltaEvento";
+            btnAltaEvento.Size = new Size(130, 46);
+            btnAltaEvento.TabIndex = 4;
+            btnAltaEvento.Text = "Cargar Eventos";
+            btnAltaEvento.UseVisualStyleBackColor = true;
+            btnAltaEvento.Click += btnAltaEvento_Click;
+            // 
+            // tbNombreEvento
+            // 
+            tbNombreEvento.Location = new Point(167, 78);
+            tbNombreEvento.Multiline = true;
+            tbNombreEvento.Name = "tbNombreEvento";
+            tbNombreEvento.Size = new Size(235, 43);
+            tbNombreEvento.TabIndex = 3;
             // 
             // dtpFecha
             // 
@@ -78,23 +96,6 @@
             label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
             label1.Text = "Fecha";
-            // 
-            // tbNombreEvento
-            // 
-            tbNombreEvento.Location = new Point(167, 78);
-            tbNombreEvento.Multiline = true;
-            tbNombreEvento.Name = "tbNombreEvento";
-            tbNombreEvento.Size = new Size(235, 43);
-            tbNombreEvento.TabIndex = 3;
-            // 
-            // btnAltaEvento
-            // 
-            btnAltaEvento.Location = new Point(494, 55);
-            btnAltaEvento.Name = "btnAltaEvento";
-            btnAltaEvento.Size = new Size(130, 46);
-            btnAltaEvento.TabIndex = 4;
-            btnAltaEvento.Text = "Cargar Eventos";
-            btnAltaEvento.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 

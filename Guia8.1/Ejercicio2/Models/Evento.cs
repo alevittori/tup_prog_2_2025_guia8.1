@@ -18,5 +18,10 @@ namespace Ejercicio2.Models
         }
         public void  RegistrarExportable(IExportable exportable) { }
         public List<IExportable> VerExportables() {  return new List<IExportable>(); } //IMPLEMENTAR
+
+        public override string ToString()
+        {
+            return $"{NombreEvento} - Fecha {Fecha}";
+        }
     }
 }
