@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ejercicio2.Models
 {
-    internal class Persona
+    internal class Persona:IComparable<Persona>
     {
         protected string dni;
         protected string nombre;
 
-        public string DNI { get { return dni; } private set { } }
-        public string Nombre { get { return nombre; } private set { } }
+        public string DNI { get { return dni; } protected set { } }
+        public string Nombre { get { return nombre; } protected set { } }
 
         public Persona(string nombre, string dni) 
         {
@@ -21,7 +21,16 @@ namespace Ejercicio2.Models
         
         }
 
+        public override string ToString()
+        {
+            return $"{Nombre} (DNI: {DNI}). ";
+        }
 
+        public int CompareTo(Persona other)
+        {
+            if (other == null) return -1 ;
+            return this.DNI.CompareTo(other.DNI) ;
+        }
 
     }
 }
