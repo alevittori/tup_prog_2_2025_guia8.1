@@ -9,6 +9,7 @@ namespace Ejercicio2.Models
     internal class Expositor : Persona, IExportable
     {
         public string PapelProtagonico { get; set; }
+        public Expositor():base("","") {}
         public Expositor(string nombre, string dni, string papelProtagonico) : base(nombre, dni)
         {
             PapelProtagonico = papelProtagonico;

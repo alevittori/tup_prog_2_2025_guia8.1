@@ -35,6 +35,10 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            btnListar = new Button();
+            btnSalir = new Button();
+            btnExportar = new Button();
+            btnImportar = new Button();
             lbDetalles = new ListBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -102,6 +106,10 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btnListar);
+            groupBox2.Controls.Add(btnSalir);
+            groupBox2.Controls.Add(btnExportar);
+            groupBox2.Controls.Add(btnImportar);
             groupBox2.Controls.Add(lbDetalles);
             groupBox2.Location = new Point(12, 188);
             groupBox2.Name = "groupBox2";
@@ -110,20 +118,60 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Administracion de Eventos";
             // 
+            // btnListar
+            // 
+            btnListar.Location = new Point(494, 22);
+            btnListar.Name = "btnListar";
+            btnListar.Size = new Size(130, 46);
+            btnListar.TabIndex = 8;
+            btnListar.Text = "Listar Eventos";
+            btnListar.UseVisualStyleBackColor = true;
+            btnListar.Click += btnListar_Click;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(494, 248);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(130, 46);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // btnExportar
+            // 
+            btnExportar.Location = new Point(494, 151);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(130, 46);
+            btnExportar.TabIndex = 6;
+            btnExportar.Text = "Exportar Tecnicos y Expositores";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
+            // 
+            // btnImportar
+            // 
+            btnImportar.Location = new Point(494, 90);
+            btnImportar.Name = "btnImportar";
+            btnImportar.Size = new Size(130, 46);
+            btnImportar.TabIndex = 5;
+            btnImportar.Text = "Importar Tecnicos/Expositories";
+            btnImportar.UseVisualStyleBackColor = true;
+            btnImportar.Click += btnImportar_Click;
+            // 
             // lbDetalles
             // 
             lbDetalles.FormattingEnabled = true;
             lbDetalles.ItemHeight = 15;
             lbDetalles.Location = new Point(6, 22);
             lbDetalles.Name = "lbDetalles";
-            lbDetalles.Size = new Size(649, 289);
+            lbDetalles.Size = new Size(396, 289);
             lbDetalles.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 511);
+            ClientSize = new Size(704, 525);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Form1";
@@ -144,5 +192,9 @@
         private TextBox tbNombreEvento;
         private GroupBox groupBox2;
         private ListBox lbDetalles;
+        private Button btnSalir;
+        private Button btnExportar;
+        private Button btnImportar;
+        private Button btnListar;
     }
 }

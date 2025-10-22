@@ -20,7 +20,7 @@ namespace Ejercicio2.Models
             Fecha = fecha;
             NombreEvento = nombreEvento;
         }
-        public void  RegistrarExportable(IExportable exportable) 
+        public void  RegistrarExportable(IExportable exportable)  //esto es como un importar?? 
         {
             if (exportable == null) return;
             try
@@ -39,7 +39,7 @@ namespace Ejercicio2.Models
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al registrar Tecnico");
+                MessageBox.Show(ex.Message, "Error al registrar Tecnico");// aca esta mal, deberiamos lanzar un innerexeption, ya que el form es el encargado de interactuar finalmente con el usuario
             }
                 try
                 {
@@ -52,9 +52,9 @@ namespace Ejercicio2.Models
                         listaPersonasEnEvento.Add(person);
                     }
                 }
-                catch (Exception ex) { MessageBox.Show(ex.Message, "Error al registrar Persona"); }
-            
-        
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Error al registrar Persona"); }// aca esta mal, deberiamos lanzar un innerexeption, ya que el form es el encargado de interactuar finalmente con el usuario
+
+
         }
 
 
