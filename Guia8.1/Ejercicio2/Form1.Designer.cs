@@ -74,10 +74,13 @@
             // 
             // dtpFecha
             // 
+            dtpFecha.CustomFormat = "dd/MM/yyyy";
+            dtpFecha.Format = DateTimePickerFormat.Custom;
             dtpFecha.Location = new Point(167, 37);
             dtpFecha.Name = "dtpFecha";
             dtpFecha.Size = new Size(235, 23);
             dtpFecha.TabIndex = 2;
+            dtpFecha.Value = new DateTime(2025, 10, 22, 8, 31, 48, 0);
             // 
             // label2
             // 

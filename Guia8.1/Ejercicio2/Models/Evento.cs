@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio2.Models
 {
-    internal class Evento
+    internal class Evento: IComparable<Evento>
     {
         public DateTime Fecha { get; private set; }
         public string NombreEvento { get; private set;}
@@ -79,6 +79,12 @@ namespace Ejercicio2.Models
         public override string ToString()
         {
             return $"{NombreEvento} - Fecha {Fecha:dd/MM/yyyy}";
+        }
+
+        public int CompareTo(Evento other)
+        {
+            if(other == null) return -1 ;
+            return this.Fecha.Date.CompareTo(other.Fecha.Date);
         }
     }
 }
